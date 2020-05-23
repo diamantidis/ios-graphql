@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8166525B6F74DA85C08794CF /* Pods_iOSGraphQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11FA5F8C8E98507EF6448EB1 /* Pods_iOSGraphQL.framework */; };
 		8D4718F02478F9FB002A5331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4718EF2478F9FB002A5331 /* AppDelegate.swift */; };
 		8D4718F22478F9FB002A5331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4718F12478F9FB002A5331 /* SceneDelegate.swift */; };
 		8D4718F42478F9FB002A5331 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4718F32478F9FB002A5331 /* ContentView.swift */; };
@@ -27,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11FA5F8C8E98507EF6448EB1 /* Pods_iOSGraphQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSGraphQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		199C70BD3D3145A9252070E5 /* Pods-iOSGraphQL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSGraphQL.debug.xcconfig"; path = "Target Support Files/Pods-iOSGraphQL/Pods-iOSGraphQL.debug.xcconfig"; sourceTree = "<group>"; };
 		8D4718EC2478F9FB002A5331 /* iOSGraphQL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSGraphQL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D4718EF2478F9FB002A5331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D4718F12478F9FB002A5331 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +41,7 @@
 		8D4719022478F9FE002A5331 /* iOSGraphQLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOSGraphQLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D4719062478F9FE002A5331 /* iOSGraphQLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSGraphQLTests.swift; sourceTree = "<group>"; };
 		8D4719082478F9FE002A5331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E00BF888400986909EC0C349 /* Pods-iOSGraphQL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSGraphQL.release.xcconfig"; path = "Target Support Files/Pods-iOSGraphQL/Pods-iOSGraphQL.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8166525B6F74DA85C08794CF /* Pods_iOSGraphQL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,12 +63,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23CF204EF098FFB401883428 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				199C70BD3D3145A9252070E5 /* Pods-iOSGraphQL.debug.xcconfig */,
+				E00BF888400986909EC0C349 /* Pods-iOSGraphQL.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		68D534F9FB8BE103AA46BD8B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				11FA5F8C8E98507EF6448EB1 /* Pods_iOSGraphQL.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8D4718E32478F9FB002A5331 = {
 			isa = PBXGroup;
 			children = (
 				8D4718EE2478F9FB002A5331 /* iOSGraphQL */,
 				8D4719052478F9FE002A5331 /* iOSGraphQLTests */,
 				8D4718ED2478F9FB002A5331 /* Products */,
+				23CF204EF098FFB401883428 /* Pods */,
+				68D534F9FB8BE103AA46BD8B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,9 +139,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D47190B2478F9FE002A5331 /* Build configuration list for PBXNativeTarget "iOSGraphQL" */;
 			buildPhases = (
+				C0845E2F1BCF8B0F93A321D6 /* [CP] Check Pods Manifest.lock */,
 				8D4718E82478F9FB002A5331 /* Sources */,
 				8D4718E92478F9FB002A5331 /* Frameworks */,
 				8D4718EA2478F9FB002A5331 /* Resources */,
+				A138397AD311E9EB4DD42B26 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -202,6 +229,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A138397AD311E9EB4DD42B26 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOSGraphQL/Pods-iOSGraphQL-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iOSGraphQL/Pods-iOSGraphQL-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iOSGraphQL/Pods-iOSGraphQL-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C0845E2F1BCF8B0F93A321D6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iOSGraphQL-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D4718E82478F9FB002A5331 /* Sources */ = {
@@ -360,6 +429,7 @@
 		};
 		8D47190C2478F9FE002A5331 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 199C70BD3D3145A9252070E5 /* Pods-iOSGraphQL.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -380,6 +450,7 @@
 		};
 		8D47190D2478F9FE002A5331 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E00BF888400986909EC0C349 /* Pods-iOSGraphQL.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
