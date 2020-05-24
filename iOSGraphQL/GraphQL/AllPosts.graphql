@@ -1,0 +1,6 @@
+query AllPosts {
+  posts {
+    id
+    title
+  }
+}

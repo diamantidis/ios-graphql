@@ -22,6 +22,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView()
 
+        let query = AllPostsQuery()
+        GraphQLClient.apollo.fetch(query: query) { result in
+            guard let data = try? result.get().data else { return }
+            let posts = data.posts.map{ Post(post: $0)}
+            print(posts)
+        }
+
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
