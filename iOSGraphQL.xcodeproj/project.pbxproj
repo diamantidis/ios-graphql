@@ -21,6 +21,7 @@
 		8D4719192478FF4E002A5331 /* GraphQLClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4719182478FF4E002A5331 /* GraphQLClient.swift */; };
 		8D47191C2479015C002A5331 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D47191B2479015C002A5331 /* Post.swift */; };
 		8D859E0424822DEA000259FD /* CustomUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859E0324822DEA000259FD /* CustomUUID.swift */; };
+		8D859E0C24823D09000259FD /* Date+JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859E0B24823D09000259FD /* Date+JSONDecodable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		8D4719182478FF4E002A5331 /* GraphQLClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLClient.swift; sourceTree = "<group>"; };
 		8D47191B2479015C002A5331 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		8D859E0324822DEA000259FD /* CustomUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUUID.swift; sourceTree = "<group>"; };
+		8D859E0B24823D09000259FD /* Date+JSONDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+JSONDecodable.swift"; sourceTree = "<group>"; };
 		E00BF888400986909EC0C349 /* Pods-iOSGraphQL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSGraphQL.release.xcconfig"; path = "Target Support Files/Pods-iOSGraphQL/Pods-iOSGraphQL.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +117,7 @@
 		8D4718EE2478F9FB002A5331 /* iOSGraphQL */ = {
 			isa = PBXGroup;
 			children = (
+				8D859E0A24823CF6000259FD /* Extensions */,
 				8D47191A24790153002A5331 /* Models */,
 				8D4719112478FB58002A5331 /* GraphQL */,
 				8D4718EF2478F9FB002A5331 /* AppDelegate.swift */,
@@ -163,6 +166,14 @@
 				8D859E0324822DEA000259FD /* CustomUUID.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8D859E0A24823CF6000259FD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8D859E0B24823D09000259FD /* Date+JSONDecodable.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D4718F02478F9FB002A5331 /* AppDelegate.swift in Sources */,
+				8D859E0C24823D09000259FD /* Date+JSONDecodable.swift in Sources */,
 				8D4718F22478F9FB002A5331 /* SceneDelegate.swift in Sources */,
 				8D4719172478FEA2002A5331 /* API.swift in Sources */,
 				8D859E0424822DEA000259FD /* CustomUUID.swift in Sources */,

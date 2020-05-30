@@ -11,9 +11,11 @@ import Foundation
 struct Post {
     let id: CustomUUID
     let title: String
+    let publishedAt: Date
 
     init(post: AllPostsQuery.Data.Post) {
         self.id = post.id
         self.title = post.title
+        self.publishedAt = post.publishedAt
     }
 }

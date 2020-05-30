@@ -13,6 +13,7 @@ public final class AllPostsQuery: GraphQLQuery {
         __typename
         id
         title
+        publishedAt
       }
     }
     """
@@ -55,6 +56,7 @@ public final class AllPostsQuery: GraphQLQuery {
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
         GraphQLField("id", type: .nonNull(.scalar(CustomUUID.self))),
         GraphQLField("title", type: .nonNull(.scalar(String.self))),
+        GraphQLField("publishedAt", type: .nonNull(.scalar(Date.self))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -63,8 +65,8 @@ public final class AllPostsQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: CustomUUID, title: String) {
-        self.init(unsafeResultMap: ["__typename": "Post", "id": id, "title": title])
+      public init(id: CustomUUID, title: String, publishedAt: Date) {
+        self.init(unsafeResultMap: ["__typename": "Post", "id": id, "title": title, "publishedAt": publishedAt])
       }
 
       public var __typename: String {
@@ -91,6 +93,15 @@ public final class AllPostsQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "title")
+        }
+      }
+
+      public var publishedAt: Date {
+        get {
+          return resultMap["publishedAt"]! as! Date
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "publishedAt")
         }
       }
     }
