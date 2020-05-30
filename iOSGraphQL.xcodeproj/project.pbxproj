@@ -20,6 +20,7 @@
 		8D4719172478FEA2002A5331 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4719162478FEA2002A5331 /* API.swift */; };
 		8D4719192478FF4E002A5331 /* GraphQLClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4719182478FF4E002A5331 /* GraphQLClient.swift */; };
 		8D47191C2479015C002A5331 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D47191B2479015C002A5331 /* Post.swift */; };
+		8D859E0424822DEA000259FD /* CustomUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859E0324822DEA000259FD /* CustomUUID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		8D4719162478FEA2002A5331 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		8D4719182478FF4E002A5331 /* GraphQLClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLClient.swift; sourceTree = "<group>"; };
 		8D47191B2479015C002A5331 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		8D859E0324822DEA000259FD /* CustomUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUUID.swift; sourceTree = "<group>"; };
 		E00BF888400986909EC0C349 /* Pods-iOSGraphQL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSGraphQL.release.xcconfig"; path = "Target Support Files/Pods-iOSGraphQL/Pods-iOSGraphQL.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				8D47191B2479015C002A5331 /* Post.swift */,
+				8D859E0324822DEA000259FD /* CustomUUID.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				8D4718F02478F9FB002A5331 /* AppDelegate.swift in Sources */,
 				8D4718F22478F9FB002A5331 /* SceneDelegate.swift in Sources */,
 				8D4719172478FEA2002A5331 /* API.swift in Sources */,
+				8D859E0424822DEA000259FD /* CustomUUID.swift in Sources */,
 				8D47191C2479015C002A5331 /* Post.swift in Sources */,
 				8D4718F42478F9FB002A5331 /* ContentView.swift in Sources */,
 				8D4719192478FF4E002A5331 /* GraphQLClient.swift in Sources */,

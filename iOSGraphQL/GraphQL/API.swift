@@ -53,7 +53,7 @@ public final class AllPostsQuery: GraphQLQuery {
 
       public static let selections: [GraphQLSelection] = [
         GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
-        GraphQLField("id", type: .nonNull(.scalar(Int.self))),
+        GraphQLField("id", type: .nonNull(.scalar(CustomUUID.self))),
         GraphQLField("title", type: .nonNull(.scalar(String.self))),
       ]
 
@@ -63,7 +63,7 @@ public final class AllPostsQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: Int, title: String) {
+      public init(id: CustomUUID, title: String) {
         self.init(unsafeResultMap: ["__typename": "Post", "id": id, "title": title])
       }
 
@@ -76,9 +76,9 @@ public final class AllPostsQuery: GraphQLQuery {
         }
       }
 
-      public var id: Int {
+      public var id: CustomUUID {
         get {
-          return resultMap["id"]! as! Int
+          return resultMap["id"]! as! CustomUUID
         }
         set {
           resultMap.updateValue(newValue, forKey: "id")

@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct Post: Codable {
-    var id: Int
-    var title: String
+struct Post {
+    let id: CustomUUID
+    let title: String
 
     init(post: AllPostsQuery.Data.Post) {
         self.id = post.id
