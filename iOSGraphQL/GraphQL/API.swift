@@ -4,6 +4,55 @@
 import Apollo
 import Foundation
 
+/// Tags
+public enum Tag: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
+  public typealias RawValue = String
+  /// About swift
+  case swift
+  /// About vapor
+  case vapor
+  /// About graphql
+  case graphQl
+  /// Auto generated constant for unknown enum values
+  case __unknown(RawValue)
+
+  public init?(rawValue: RawValue) {
+    switch rawValue {
+      case "Swift": self = .swift
+      case "Vapor": self = .vapor
+      case "GraphQL": self = .graphQl
+      default: self = .__unknown(rawValue)
+    }
+  }
+
+  public var rawValue: RawValue {
+    switch self {
+      case .swift: return "Swift"
+      case .vapor: return "Vapor"
+      case .graphQl: return "GraphQL"
+      case .__unknown(let value): return value
+    }
+  }
+
+  public static func == (lhs: Tag, rhs: Tag) -> Bool {
+    switch (lhs, rhs) {
+      case (.swift, .swift): return true
+      case (.vapor, .vapor): return true
+      case (.graphQl, .graphQl): return true
+      case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
+      default: return false
+    }
+  }
+
+  public static var allCases: [Tag] {
+    return [
+      .swift,
+      .vapor,
+      .graphQl,
+    ]
+  }
+}
+
 public final class AllPostsQuery: GraphQLQuery {
   /// The raw GraphQL definition of this operation.
   public let operationDefinition: String =
@@ -14,6 +63,7 @@ public final class AllPostsQuery: GraphQLQuery {
         id
         title
         publishedAt
+        tags
       }
     }
     """
@@ -57,6 +107,7 @@ public final class AllPostsQuery: GraphQLQuery {
         GraphQLField("id", type: .nonNull(.scalar(CustomUUID.self))),
         GraphQLField("title", type: .nonNull(.scalar(String.self))),
         GraphQLField("publishedAt", type: .nonNull(.scalar(Date.self))),
+        GraphQLField("tags", type: .nonNull(.list(.nonNull(.scalar(Tag.self))))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -65,8 +116,8 @@ public final class AllPostsQuery: GraphQLQuery {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: CustomUUID, title: String, publishedAt: Date) {
-        self.init(unsafeResultMap: ["__typename": "Post", "id": id, "title": title, "publishedAt": publishedAt])
+      public init(id: CustomUUID, title: String, publishedAt: Date, tags: [Tag]) {
+        self.init(unsafeResultMap: ["__typename": "Post", "id": id, "title": title, "publishedAt": publishedAt, "tags": tags])
       }
 
       public var __typename: String {
@@ -102,6 +153,15 @@ public final class AllPostsQuery: GraphQLQuery {
         }
         set {
           resultMap.updateValue(newValue, forKey: "publishedAt")
+        }
+      }
+
+      public var tags: [Tag] {
+        get {
+          return resultMap["tags"]! as! [Tag]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "tags")
         }
       }
     }
