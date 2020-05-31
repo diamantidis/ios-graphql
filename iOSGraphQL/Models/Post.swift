@@ -8,12 +8,18 @@
 
 import Foundation
 
-struct Post: Codable {
-    var id: Int
-    var title: String
+struct Post {
+    let id: CustomUUID
+    let title: String
+    let publishedAt: Date
+    let tags: [Tag]
+    var author: Author
 
     init(post: AllPostsQuery.Data.Post) {
         self.id = post.id
         self.title = post.title
+        self.publishedAt = post.publishedAt
+        self.tags = post.tags
+        self.author = Author(author: post.author.fragments.authorDetails)
     }
 }
