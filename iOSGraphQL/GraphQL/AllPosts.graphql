@@ -1,6 +1,17 @@
+fragment AuthorDetails on Author {
+  id
+  name
+  twitter
+}
+
 query AllPosts {
   posts {
     id
     title
+    publishedAt
+    tags
+    author {
+      ...AuthorDetails
+    }
   }
 }
