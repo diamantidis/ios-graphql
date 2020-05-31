@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Twitter: @diamantidis_io](https://img.shields.io/badge/Twitter-@diamantidis_io-blue.svg?logo=twitter&color=1da1f2&style=flat)](https://twitter.com/diamantidis_io)
 
-A demo iOS app that uses [Apollo iOS] to communicate with a [GraphQL server built with Vapor]. This app was built as a demonstration demo for the post ["Swift ❤️ GraphQL: How to create a GraphQL server with Vapor and an iOS app as a client"] that I published on my [personal blog]. You can always refer to the post if you want to find more information about this project.
+A demo iOS app that uses [Apollo iOS] to communicate with a [GraphQL server built with Vapor]. This app was built as a demonstration demo for the posts ["Swift ❤️ GraphQL: How to create a GraphQL server with Vapor and an iOS app as a client"] and ["Custom GraphQL types on Swift projects"] that I published on my [personal blog]. You can always refer to those posts if you want to find more information about this project.
 
 ## Requirements
 * Xcode 11
@@ -54,6 +54,7 @@ This project is licensed under the terms of the MIT license. See the [LICENSE] f
 [GraphQL server built with Vapor]: https://github.com/diamantidis/vapor-graphql
 
 ["Swift ❤️ GraphQL: How to create a GraphQL server with Vapor and an iOS app as a client"]: https://diamantidis.github.io/2020/05/24/swift-loves-graphql-server-with-vapor-and-ios-app-client
+["Custom GraphQL types on Swift projects"]: https://diamantidis.github.io/2020/05/31/custom-graphql-types-on-swift-projects
 [personal blog]: https://diamantidis.github.io
 
 [GraphQLClient.swift]: iOSGraphQL/GraphQL/GraphQLClient.swift
