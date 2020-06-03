@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8166525B6F74DA85C08794CF /* Pods_iOSGraphQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11FA5F8C8E98507EF6448EB1 /* Pods_iOSGraphQL.framework */; };
+		8D279E662486192C0062BD50 /* DeletePost.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8D279E652486192C0062BD50 /* DeletePost.graphql */; };
 		8D4718F02478F9FB002A5331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4718EF2478F9FB002A5331 /* AppDelegate.swift */; };
 		8D4718F22478F9FB002A5331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4718F12478F9FB002A5331 /* SceneDelegate.swift */; };
 		8D4718F42478F9FB002A5331 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4718F32478F9FB002A5331 /* ContentView.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		11FA5F8C8E98507EF6448EB1 /* Pods_iOSGraphQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSGraphQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		199C70BD3D3145A9252070E5 /* Pods-iOSGraphQL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSGraphQL.debug.xcconfig"; path = "Target Support Files/Pods-iOSGraphQL/Pods-iOSGraphQL.debug.xcconfig"; sourceTree = "<group>"; };
+		8D279E652486192C0062BD50 /* DeletePost.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = DeletePost.graphql; sourceTree = "<group>"; };
 		8D4718EC2478F9FB002A5331 /* iOSGraphQL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSGraphQL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D4718EF2478F9FB002A5331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D4718F12478F9FB002A5331 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				8D4719122478FCB7002A5331 /* schema.json */,
 				8D4719142478FD84002A5331 /* AllPosts.graphql */,
 				8D4719182478FF4E002A5331 /* GraphQLClient.swift */,
+				8D279E652486192C0062BD50 /* DeletePost.graphql */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				8D4718F92478F9FE002A5331 /* Preview Assets.xcassets in Resources */,
 				8D4718F62478F9FE002A5331 /* Assets.xcassets in Resources */,
 				8D4719152478FD84002A5331 /* AllPosts.graphql in Resources */,
+				8D279E662486192C0062BD50 /* DeletePost.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

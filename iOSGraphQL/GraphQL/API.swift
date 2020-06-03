@@ -238,6 +238,55 @@ public final class AllPostsQuery: GraphQLQuery {
   }
 }
 
+public final class DeletePostMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation DeletePost($id: CustomUUID!) {
+      deletePost(id: $id)
+    }
+    """
+
+  public let operationName: String = "DeletePost"
+
+  public var id: CustomUUID
+
+  public init(id: CustomUUID) {
+    self.id = id
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("deletePost", arguments: ["id": GraphQLVariable("id")], type: .nonNull(.scalar(Bool.self))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(deletePost: Bool) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "deletePost": deletePost])
+    }
+
+    public var deletePost: Bool {
+      get {
+        return resultMap["deletePost"]! as! Bool
+      }
+      set {
+        resultMap.updateValue(newValue, forKey: "deletePost")
+      }
+    }
+  }
+}
+
 public struct AuthorDetails: GraphQLFragment {
   /// The raw GraphQL definition of this fragment.
   public static let fragmentDefinition: String =

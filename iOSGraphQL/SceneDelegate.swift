@@ -13,6 +13,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    private func deletePost(with id: CustomUUID) {
+        let mutation = DeletePostMutation(id: id)
+
+        GraphQLClient.apollo.perform(mutation: mutation) {result in
+            switch result {
+            case .failure(let error):
+                print("=============")
+                print(error)
+                print("=============")
+            case .success(let result):
+                print("=============")
+                print("Is deleted? \(result.data?.deletePost)")
+                print("=============")
+            }
+        }
+    }
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -26,6 +43,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             guard let data = try? result.get().data else { return }
             let posts = data.posts.map { Post(post: $0) }
             print(posts)
+
+            if let post = posts.first {
+                self.deletePost(with: post.id)
+            }
+
         }
 
         // Use a UIHostingController as window root view controller.
