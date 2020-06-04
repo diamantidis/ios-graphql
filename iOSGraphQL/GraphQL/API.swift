@@ -7,38 +7,38 @@ import Foundation
 /// Tags
 public enum Tag: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSONDecodable, Apollo.JSONEncodable {
   public typealias RawValue = String
+  /// About GraphQL
+  case graphQl
   /// About Vapor
   case vapor
   /// About Swift
   case swift
-  /// About GraphQL
-  case graphQl
   /// Auto generated constant for unknown enum values
   case __unknown(RawValue)
 
   public init?(rawValue: RawValue) {
     switch rawValue {
+      case "GraphQL": self = .graphQl
       case "Vapor": self = .vapor
       case "Swift": self = .swift
-      case "GraphQL": self = .graphQl
       default: self = .__unknown(rawValue)
     }
   }
 
   public var rawValue: RawValue {
     switch self {
+      case .graphQl: return "GraphQL"
       case .vapor: return "Vapor"
       case .swift: return "Swift"
-      case .graphQl: return "GraphQL"
       case .__unknown(let value): return value
     }
   }
 
   public static func == (lhs: Tag, rhs: Tag) -> Bool {
     switch (lhs, rhs) {
+      case (.graphQl, .graphQl): return true
       case (.vapor, .vapor): return true
       case (.swift, .swift): return true
-      case (.graphQl, .graphQl): return true
       case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
       default: return false
     }
@@ -46,9 +46,9 @@ public enum Tag: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSO
 
   public static var allCases: [Tag] {
     return [
+      .graphQl,
       .vapor,
       .swift,
-      .graphQl,
     ]
   }
 }
@@ -282,6 +282,132 @@ public final class DeletePostMutation: GraphQLMutation {
       }
       set {
         resultMap.updateValue(newValue, forKey: "deletePost")
+      }
+    }
+  }
+}
+
+public final class EditPostMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation EditPost($id: CustomUUID!, $title: String!, $tags: [Tag!]!) {
+      editPost(id: $id, tags: $tags, title: $title) {
+        __typename
+        id
+        title
+        publishedAt
+        tags
+      }
+    }
+    """
+
+  public let operationName: String = "EditPost"
+
+  public var id: CustomUUID
+  public var title: String
+  public var tags: [Tag]
+
+  public init(id: CustomUUID, title: String, tags: [Tag]) {
+    self.id = id
+    self.title = title
+    self.tags = tags
+  }
+
+  public var variables: GraphQLMap? {
+    return ["id": id, "title": title, "tags": tags]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("editPost", arguments: ["id": GraphQLVariable("id"), "tags": GraphQLVariable("tags"), "title": GraphQLVariable("title")], type: .object(EditPost.selections)),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(editPost: EditPost? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "editPost": editPost.flatMap { (value: EditPost) -> ResultMap in value.resultMap }])
+    }
+
+    public var editPost: EditPost? {
+      get {
+        return (resultMap["editPost"] as? ResultMap).flatMap { EditPost(unsafeResultMap: $0) }
+      }
+      set {
+        resultMap.updateValue(newValue?.resultMap, forKey: "editPost")
+      }
+    }
+
+    public struct EditPost: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["Post"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(CustomUUID.self))),
+        GraphQLField("title", type: .nonNull(.scalar(String.self))),
+        GraphQLField("publishedAt", type: .nonNull(.scalar(Date.self))),
+        GraphQLField("tags", type: .nonNull(.list(.nonNull(.scalar(Tag.self))))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: CustomUUID, title: String, publishedAt: Date, tags: [Tag]) {
+        self.init(unsafeResultMap: ["__typename": "Post", "id": id, "title": title, "publishedAt": publishedAt, "tags": tags])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: CustomUUID {
+        get {
+          return resultMap["id"]! as! CustomUUID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var title: String {
+        get {
+          return resultMap["title"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "title")
+        }
+      }
+
+      public var publishedAt: Date {
+        get {
+          return resultMap["publishedAt"]! as! Date
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "publishedAt")
+        }
+      }
+
+      public var tags: [Tag] {
+        get {
+          return resultMap["tags"]! as! [Tag]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "tags")
+        }
       }
     }
   }

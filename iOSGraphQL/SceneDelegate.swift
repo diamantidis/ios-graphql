@@ -30,6 +30,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
 
+    private func editPost(with id: CustomUUID, title: String, tags: [Tag]) {
+        let mutation = EditPostMutation(id: id, title: title, tags: tags)
+
+        GraphQLClient.apollo.perform(mutation: mutation) {result in
+            switch result {
+            case .failure(let error):
+                print("=============")
+                print(error)
+                print("=============")
+            case .success(let result):
+                print("=============")
+                print("Updated title: \(result.data?.editPost?.title)")
+                print("=============")
+            }
+        }
+    }
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -45,7 +62,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             print(posts)
 
             if let post = posts.first {
-                self.deletePost(with: post.id)
+//                self.deletePost(with: post.id)
+                self.editPost(with: post.id, title: "New title", tags: [.swift])
             }
 
         }

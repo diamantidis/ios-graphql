@@ -24,6 +24,7 @@
 		8D859E0424822DEA000259FD /* CustomUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859E0324822DEA000259FD /* CustomUUID.swift */; };
 		8D859E0C24823D09000259FD /* Date+JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859E0B24823D09000259FD /* Date+JSONDecodable.swift */; };
 		8D859E0E24825B43000259FD /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859E0D24825B43000259FD /* Author.swift */; };
+		8DD8FC352488182900C1AE4D /* EditPost.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8DD8FC342488182900C1AE4D /* EditPost.graphql */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		8D859E0324822DEA000259FD /* CustomUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUUID.swift; sourceTree = "<group>"; };
 		8D859E0B24823D09000259FD /* Date+JSONDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+JSONDecodable.swift"; sourceTree = "<group>"; };
 		8D859E0D24825B43000259FD /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
+		8DD8FC342488182900C1AE4D /* EditPost.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = EditPost.graphql; sourceTree = "<group>"; };
 		E00BF888400986909EC0C349 /* Pods-iOSGraphQL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSGraphQL.release.xcconfig"; path = "Target Support Files/Pods-iOSGraphQL/Pods-iOSGraphQL.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,6 +162,7 @@
 				8D4719142478FD84002A5331 /* AllPosts.graphql */,
 				8D4719182478FF4E002A5331 /* GraphQLClient.swift */,
 				8D279E652486192C0062BD50 /* DeletePost.graphql */,
+				8DD8FC342488182900C1AE4D /* EditPost.graphql */,
 			);
 			path = GraphQL;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D4719132478FCB7002A5331 /* schema.json in Resources */,
+				8DD8FC352488182900C1AE4D /* EditPost.graphql in Resources */,
 				8D4718FC2478F9FE002A5331 /* LaunchScreen.storyboard in Resources */,
 				8D4718F92478F9FE002A5331 /* Preview Assets.xcassets in Resources */,
 				8D4718F62478F9FE002A5331 /* Assets.xcassets in Resources */,
