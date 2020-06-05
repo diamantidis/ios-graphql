@@ -21,6 +21,7 @@
 		8D4719172478FEA2002A5331 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4719162478FEA2002A5331 /* API.swift */; };
 		8D4719192478FF4E002A5331 /* GraphQLClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4719182478FF4E002A5331 /* GraphQLClient.swift */; };
 		8D47191C2479015C002A5331 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D47191B2479015C002A5331 /* Post.swift */; };
+		8D47613F2484B860008BB22C /* CreatePost.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8D47613E2484B860008BB22C /* CreatePost.graphql */; };
 		8D859E0424822DEA000259FD /* CustomUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859E0324822DEA000259FD /* CustomUUID.swift */; };
 		8D859E0C24823D09000259FD /* Date+JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859E0B24823D09000259FD /* Date+JSONDecodable.swift */; };
 		8D859E0E24825B43000259FD /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859E0D24825B43000259FD /* Author.swift */; };
@@ -57,6 +58,7 @@
 		8D4719162478FEA2002A5331 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		8D4719182478FF4E002A5331 /* GraphQLClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLClient.swift; sourceTree = "<group>"; };
 		8D47191B2479015C002A5331 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		8D47613E2484B860008BB22C /* CreatePost.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = CreatePost.graphql; sourceTree = "<group>"; };
 		8D859E0324822DEA000259FD /* CustomUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUUID.swift; sourceTree = "<group>"; };
 		8D859E0B24823D09000259FD /* Date+JSONDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+JSONDecodable.swift"; sourceTree = "<group>"; };
 		8D859E0D24825B43000259FD /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				8D4719122478FCB7002A5331 /* schema.json */,
 				8D4719142478FD84002A5331 /* AllPosts.graphql */,
 				8D4719182478FF4E002A5331 /* GraphQLClient.swift */,
+				8D47613E2484B860008BB22C /* CreatePost.graphql */,
 				8D279E652486192C0062BD50 /* DeletePost.graphql */,
 				8DD8FC342488182900C1AE4D /* EditPost.graphql */,
 			);
@@ -274,6 +277,7 @@
 				8D4718F92478F9FE002A5331 /* Preview Assets.xcassets in Resources */,
 				8D4718F62478F9FE002A5331 /* Assets.xcassets in Resources */,
 				8D4719152478FD84002A5331 /* AllPosts.graphql in Resources */,
+				8D47613F2484B860008BB22C /* CreatePost.graphql in Resources */,
 				8D279E662486192C0062BD50 /* DeletePost.graphql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

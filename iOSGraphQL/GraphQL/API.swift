@@ -9,18 +9,18 @@ public enum Tag: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSO
   public typealias RawValue = String
   /// About GraphQL
   case graphQl
-  /// About Vapor
-  case vapor
   /// About Swift
   case swift
+  /// About Vapor
+  case vapor
   /// Auto generated constant for unknown enum values
   case __unknown(RawValue)
 
   public init?(rawValue: RawValue) {
     switch rawValue {
       case "GraphQL": self = .graphQl
-      case "Vapor": self = .vapor
       case "Swift": self = .swift
+      case "Vapor": self = .vapor
       default: self = .__unknown(rawValue)
     }
   }
@@ -28,8 +28,8 @@ public enum Tag: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSO
   public var rawValue: RawValue {
     switch self {
       case .graphQl: return "GraphQL"
-      case .vapor: return "Vapor"
       case .swift: return "Swift"
+      case .vapor: return "Vapor"
       case .__unknown(let value): return value
     }
   }
@@ -37,8 +37,8 @@ public enum Tag: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSO
   public static func == (lhs: Tag, rhs: Tag) -> Bool {
     switch (lhs, rhs) {
       case (.graphQl, .graphQl): return true
-      case (.vapor, .vapor): return true
       case (.swift, .swift): return true
+      case (.vapor, .vapor): return true
       case (.__unknown(let lhsValue), .__unknown(let rhsValue)): return lhsValue == rhsValue
       default: return false
     }
@@ -47,9 +47,48 @@ public enum Tag: RawRepresentable, Equatable, Hashable, CaseIterable, Apollo.JSO
   public static var allCases: [Tag] {
     return [
       .graphQl,
-      .vapor,
       .swift,
+      .vapor,
     ]
+  }
+}
+
+public struct PostInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  /// - Parameters:
+  ///   - authorId
+  ///   - tags
+  ///   - title
+  public init(authorId: CustomUUID, tags: [Tag], title: String) {
+    graphQLMap = ["authorId": authorId, "tags": tags, "title": title]
+  }
+
+  public var authorId: CustomUUID {
+    get {
+      return graphQLMap["authorId"] as! CustomUUID
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "authorId")
+    }
+  }
+
+  public var tags: [Tag] {
+    get {
+      return graphQLMap["tags"] as! [Tag]
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "tags")
+    }
+  }
+
+  public var title: String {
+    get {
+      return graphQLMap["title"] as! String
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "title")
+    }
   }
 }
 
@@ -106,6 +145,198 @@ public final class AllPostsQuery: GraphQLQuery {
     }
 
     public struct Post: GraphQLSelectionSet {
+      public static let possibleTypes: [String] = ["Post"]
+
+      public static let selections: [GraphQLSelection] = [
+        GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+        GraphQLField("id", type: .nonNull(.scalar(CustomUUID.self))),
+        GraphQLField("title", type: .nonNull(.scalar(String.self))),
+        GraphQLField("publishedAt", type: .nonNull(.scalar(Date.self))),
+        GraphQLField("tags", type: .nonNull(.list(.nonNull(.scalar(Tag.self))))),
+        GraphQLField("author", type: .nonNull(.object(Author.selections))),
+      ]
+
+      public private(set) var resultMap: ResultMap
+
+      public init(unsafeResultMap: ResultMap) {
+        self.resultMap = unsafeResultMap
+      }
+
+      public init(id: CustomUUID, title: String, publishedAt: Date, tags: [Tag], author: Author) {
+        self.init(unsafeResultMap: ["__typename": "Post", "id": id, "title": title, "publishedAt": publishedAt, "tags": tags, "author": author.resultMap])
+      }
+
+      public var __typename: String {
+        get {
+          return resultMap["__typename"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "__typename")
+        }
+      }
+
+      public var id: CustomUUID {
+        get {
+          return resultMap["id"]! as! CustomUUID
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "id")
+        }
+      }
+
+      public var title: String {
+        get {
+          return resultMap["title"]! as! String
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "title")
+        }
+      }
+
+      public var publishedAt: Date {
+        get {
+          return resultMap["publishedAt"]! as! Date
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "publishedAt")
+        }
+      }
+
+      public var tags: [Tag] {
+        get {
+          return resultMap["tags"]! as! [Tag]
+        }
+        set {
+          resultMap.updateValue(newValue, forKey: "tags")
+        }
+      }
+
+      public var author: Author {
+        get {
+          return Author(unsafeResultMap: resultMap["author"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "author")
+        }
+      }
+
+      public struct Author: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["Author"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLFragmentSpread(AuthorDetails.self),
+        ]
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(id: CustomUUID, name: String, twitter: String) {
+          self.init(unsafeResultMap: ["__typename": "Author", "id": id, "name": name, "twitter": twitter])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var fragments: Fragments {
+          get {
+            return Fragments(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
+        }
+
+        public struct Fragments {
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public var authorDetails: AuthorDetails {
+            get {
+              return AuthorDetails(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+public final class CreatePostMutation: GraphQLMutation {
+  /// The raw GraphQL definition of this operation.
+  public let operationDefinition: String =
+    """
+    mutation CreatePost($input: PostInput!) {
+      createPost(input: $input) {
+        __typename
+        id
+        title
+        publishedAt
+        tags
+        author {
+          __typename
+          ...AuthorDetails
+        }
+      }
+    }
+    """
+
+  public let operationName: String = "CreatePost"
+
+  public var queryDocument: String { return operationDefinition.appending(AuthorDetails.fragmentDefinition) }
+
+  public var input: PostInput
+
+  public init(input: PostInput) {
+    self.input = input
+  }
+
+  public var variables: GraphQLMap? {
+    return ["input": input]
+  }
+
+  public struct Data: GraphQLSelectionSet {
+    public static let possibleTypes: [String] = ["Mutation"]
+
+    public static let selections: [GraphQLSelection] = [
+      GraphQLField("createPost", arguments: ["input": GraphQLVariable("input")], type: .nonNull(.object(CreatePost.selections))),
+    ]
+
+    public private(set) var resultMap: ResultMap
+
+    public init(unsafeResultMap: ResultMap) {
+      self.resultMap = unsafeResultMap
+    }
+
+    public init(createPost: CreatePost) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "createPost": createPost.resultMap])
+    }
+
+    public var createPost: CreatePost {
+      get {
+        return CreatePost(unsafeResultMap: resultMap["createPost"]! as! ResultMap)
+      }
+      set {
+        resultMap.updateValue(newValue.resultMap, forKey: "createPost")
+      }
+    }
+
+    public struct CreatePost: GraphQLSelectionSet {
       public static let possibleTypes: [String] = ["Post"]
 
       public static let selections: [GraphQLSelection] = [

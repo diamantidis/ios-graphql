@@ -47,6 +47,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
 
+    private func createPost(title: String, tags: [Tag], authorId: CustomUUID) {
+        let input = PostInput(authorId: authorId, tags: tags, title: title)
+        let mutation = CreatePostMutation(input: input)
+
+        GraphQLClient.apollo.perform(mutation: mutation) {result in
+            switch result {
+            case .failure(let error):
+                print("=============")
+                print(error)
+                print("=============")
+            case .success(let result):
+                print("=============")
+                print(result.data?.createPost)
+                print("=============")
+            }
+        }
+    }
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -63,9 +81,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             if let post = posts.first {
 //                self.deletePost(with: post.id)
-                self.editPost(with: post.id, title: "New title", tags: [.swift])
+//                self.editPost(with: post.id, title: "New title", tags: [.swift])
+                self.createPost(title: "Test title", tags: [.swift, .graphQl], authorId: post.author.id)
             }
-
         }
 
         // Use a UIHostingController as window root view controller.
