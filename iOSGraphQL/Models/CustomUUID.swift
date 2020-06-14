@@ -20,3 +20,9 @@ public struct CustomUUID: JSONDecodable {
         self.value = uuid
     }
 }
+
+extension CustomUUID: JSONEncodable {
+    public var jsonValue: JSONValue {
+        return ["value": value.uuidString]
+    }
+}
