@@ -1,0 +1,3 @@
+mutation DeletePost($id: CustomUUID!) {
+  deletePost(id: $id)
+}

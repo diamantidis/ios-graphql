@@ -1,0 +1,8 @@
+mutation EditPost($id: CustomUUID!, $title: String!, $tags: [Tag!]!) {
+  editPost(id: $id, tags: $tags, title: $title) {
+    id
+    title
+    publishedAt
+    tags
+  }
+}
