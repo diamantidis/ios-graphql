@@ -8,61 +8,22 @@
 
 import UIKit
 import SwiftUI
+import Combine
+
+enum GraphQLError: Error {
+    case fetchError
+    case createError
+    case editError
+    case deleteError
+}
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    private var cancellable: AnyCancellable?
 
-    private func deletePost(with id: CustomUUID) {
-        let mutation = DeletePostMutation(id: id)
-
-        GraphQLClient.apollo.perform(mutation: mutation) {result in
-            switch result {
-            case .failure(let error):
-                print("=============")
-                print(error)
-                print("=============")
-            case .success(let result):
-                print("=============")
-                print("Is deleted? \(result.data?.deletePost)")
-                print("=============")
-            }
-        }
-    }
-
-    private func editPost(with id: CustomUUID, title: String, tags: [Tag]) {
-        let mutation = EditPostMutation(id: id, title: title, tags: tags)
-
-        GraphQLClient.apollo.perform(mutation: mutation) {result in
-            switch result {
-            case .failure(let error):
-                print("=============")
-                print(error)
-                print("=============")
-            case .success(let result):
-                print("=============")
-                print("Updated title: \(result.data?.editPost?.title)")
-                print("=============")
-            }
-        }
-    }
-
-    private func createPost(title: String, tags: [Tag], authorId: CustomUUID) {
-        let input = PostInput(authorId: authorId, tags: tags, title: title)
-        let mutation = CreatePostMutation(input: input)
-
-        GraphQLClient.apollo.perform(mutation: mutation) {result in
-            switch result {
-            case .failure(let error):
-                print("=============")
-                print(error)
-                print("=============")
-            case .success(let result):
-                print("=============")
-                print(result.data?.createPost)
-                print("=============")
-            }
-        }
+    deinit {
+        cancellable?.cancel()
     }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -73,18 +34,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView()
 
-        let query = AllPostsQuery()
-        GraphQLClient.apollo.fetch(query: query) { result in
-            guard let data = try? result.get().data else { return }
-            let posts = data.posts.map { Post(post: $0) }
-            print(posts)
-
-            if let post = posts.first {
-//                self.deletePost(with: post.id)
-//                self.editPost(with: post.id, title: "New title", tags: [.swift])
-                self.createPost(title: "Test title", tags: [.swift, .graphQl], authorId: post.author.id)
+        cancellable = self.fetchPosts()
+            .flatMap { posts in
+                return self.createPost(title: "New post", tags: [.swift], authorId: posts.first!.author.id)
             }
-        }
+            .flatMap { post -> Future<EditPostMutation.Data.EditPost, GraphQLError> in
+                let updatedTags = post.tags + [.vapor, .graphQl]
+                return self.editPost(with: post.id, title: "Updated Title", tags: updatedTags)
+            }
+            .flatMap { post in
+                return self.deletePost(with: post.id)
+            }
+            .sink(
+                receiveCompletion: { print($0) },
+                receiveValue: { print($0) }
+            )
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
@@ -122,7 +86,68 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 
+
+extension SceneDelegate {
+    private func fetchPosts() -> Future<[Post], GraphQLError> {
+        let query = AllPostsQuery()
+
+        let future = Future<[Post], GraphQLError> { promise in
+            GraphQLClient.apollo.fetch(query: query) { result in
+                guard let data = try? result.get().data else {
+                    return promise(.failure(GraphQLError.fetchError))
+                }
+                let posts = data.posts.map { Post(post: $0) }
+                return promise(.success(posts))
+            }
+        }
+
+        return future
+    }
+
+    private func createPost(title: String, tags: [Tag], authorId: CustomUUID) -> Future<CreatePostMutation.Data.CreatePost, GraphQLError> {
+        let input = PostInput(authorId: authorId, tags: tags, title: title)
+        let mutation = CreatePostMutation(input: input)
+
+        let future = Future<CreatePostMutation.Data.CreatePost, GraphQLError> { promise in
+            GraphQLClient.apollo.perform(mutation: mutation) { result in
+                guard let post = try? result.get().data?.createPost else {
+                    return promise(.failure(.createError))
+                }
+                return promise(.success(post))
+            }
+        }
+        return future
+    }
+
+    private func editPost(with id: CustomUUID, title: String, tags: [Tag]) -> Future<EditPostMutation.Data.EditPost, GraphQLError> {
+        let mutation = EditPostMutation(id: id, title: title, tags: tags)
+
+        let future = Future<EditPostMutation.Data.EditPost, GraphQLError> { promise in
+            GraphQLClient.apollo.perform(mutation: mutation) { result in
+                guard let post = try? result.get().data?.editPost else {
+                    return promise(.failure(.editError))
+                }
+                return promise(.success(post))
+            }
+        }
+
+        return future
+    }
+
+    private func deletePost(with id: CustomUUID) -> Future<Bool, GraphQLError> {
+        let mutation = DeletePostMutation(id: id)
+
+        let future = Future<Bool, GraphQLError> { promise in
+            GraphQLClient.apollo.perform(mutation: mutation) { result in
+                guard let result = try? result.get().data?.deletePost else {
+                    return promise(.failure(.deleteError))
+                }
+                return promise(.success(result))
+            }
+        }
+
+        return future
+    }
+}
