@@ -57,19 +57,19 @@ public struct PostInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
   /// - Parameters:
-  ///   - authorId
+  ///   - publishedAt
   ///   - tags
   ///   - title
-  public init(authorId: CustomUUID, tags: [Tag], title: String) {
-    graphQLMap = ["authorId": authorId, "tags": tags, "title": title]
+  public init(publishedAt: Date, tags: [Tag], title: String) {
+    graphQLMap = ["publishedAt": publishedAt, "tags": tags, "title": title]
   }
 
-  public var authorId: CustomUUID {
+  public var publishedAt: Date {
     get {
-      return graphQLMap["authorId"] as! CustomUUID
+      return graphQLMap["publishedAt"] as! Date
     }
     set {
-      graphQLMap.updateValue(newValue, forKey: "authorId")
+      graphQLMap.updateValue(newValue, forKey: "publishedAt")
     }
   }
 
@@ -314,7 +314,7 @@ public final class CreatePostMutation: GraphQLMutation {
     public static let possibleTypes: [String] = ["Mutation"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("createPost", arguments: ["input": GraphQLVariable("input")], type: .nonNull(.object(CreatePost.selections))),
+      GraphQLField("createPost", arguments: ["input": GraphQLVariable("input")], type: .object(CreatePost.selections)),
     ]
 
     public private(set) var resultMap: ResultMap
@@ -323,16 +323,16 @@ public final class CreatePostMutation: GraphQLMutation {
       self.resultMap = unsafeResultMap
     }
 
-    public init(createPost: CreatePost) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "createPost": createPost.resultMap])
+    public init(createPost: CreatePost? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "createPost": createPost.flatMap { (value: CreatePost) -> ResultMap in value.resultMap }])
     }
 
-    public var createPost: CreatePost {
+    public var createPost: CreatePost? {
       get {
-        return CreatePost(unsafeResultMap: resultMap["createPost"]! as! ResultMap)
+        return (resultMap["createPost"] as? ResultMap).flatMap { CreatePost(unsafeResultMap: $0) }
       }
       set {
-        resultMap.updateValue(newValue.resultMap, forKey: "createPost")
+        resultMap.updateValue(newValue?.resultMap, forKey: "createPost")
       }
     }
 

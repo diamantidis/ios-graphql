@@ -10,17 +10,34 @@ import Combine
 
 class MockBlogService: BlogService {
     func fetchPosts() -> AnyPublisher<[Post], GraphQLError> {
-        let subject = CurrentValueSubject<[Post], GraphQLError>(posts)
-        return subject.eraseToAnyPublisher()
+        let future = Future<[Post], GraphQLError> {promise in
+            DispatchQueue.global(qos: .background).async { [weak self] in
+                sleep(1)
+                guard let self = self else {
+                    return promise(.failure(.fetchError))
+                }
+                promise(.success(self.posts))
+            }
+        }
+        return future.eraseToAnyPublisher()
     }
 
-    func createPost(title: String, tags: [Tag], authorId: CustomUUID) -> AnyPublisher<Post, GraphQLError> {
+    func createPost(title: String, tags: [Tag], publishedAt: Date) -> AnyPublisher<Post, GraphQLError> {
 
         let future = Future<Post, GraphQLError> {promise in
             DispatchQueue.global(qos: .background).async { [weak self] in
                 sleep(1)
-                let post = Post(title: title, publishedAt: Date(), tags: tags, author: Author(name: "test", twitter: "twitter"))
-                self?.posts.append(post)
+                guard let self = self else {
+                    return promise(.failure(.createError))
+                }
+
+                let post = Post(
+                    title: title,
+                    publishedAt: publishedAt,
+                    tags: tags,
+                    author: self.author
+                )
+                self.posts.append(post)
                 promise(.success(post))
             }
         }
@@ -69,5 +86,16 @@ class MockBlogService: BlogService {
     }
 
     private var posts: [Post] = [
+        Post(
+            title: "First Post",
+            publishedAt: Date(),
+            tags: [.swift],
+            author: Author(name: "test", twitter: "twitter")
+        )
     ]
+
+    private var author: Author = Author(
+        name: "Ioannis Diamantidis",
+        twitter: "@diamantidis_io"
+    )
 }

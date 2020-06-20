@@ -23,7 +23,7 @@ class GraphQLBlogService: BlogService {
                 return promise(.failure(.fetchError))
             }
 
-            self.client.fetch(query: query) { result in
+            self.client.fetch(query: query, cachePolicy: .fetchIgnoringCacheData) { result in
                 guard let data = try? result.get().data else {
                     return promise(.failure(.fetchError))
                 }
@@ -35,9 +35,9 @@ class GraphQLBlogService: BlogService {
         return future.eraseToAnyPublisher()
     }
 
-    func createPost(title: String, tags: [Tag], authorId: CustomUUID) -> AnyPublisher<Post, GraphQLError> {
+    func createPost(title: String, tags: [Tag], publishedAt: Date) -> AnyPublisher<Post, GraphQLError> {
 
-        let input = PostInput(authorId: authorId, tags: tags, title: title)
+        let input = PostInput(publishedAt: publishedAt, tags: tags, title: title)
         let mutation = CreatePostMutation(input: input)
 
         let future = Future<Post, GraphQLError> {[weak self] promise in
@@ -45,10 +45,10 @@ class GraphQLBlogService: BlogService {
                 return promise(.failure(.createError))
             }
             self.client.perform(mutation: mutation) { result in
-                guard let data = try? result.get().data else {
+                guard let createPost = try? result.get().data?.createPost else {
                     return promise(.failure(.createError))
                 }
-                let post = Post(post: data.createPost)
+                let post = Post(post: createPost)
                 return promise(.success(post))
             }
         }

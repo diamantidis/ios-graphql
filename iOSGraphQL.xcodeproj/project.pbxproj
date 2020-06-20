@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		8166525B6F74DA85C08794CF /* Pods_iOSGraphQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11FA5F8C8E98507EF6448EB1 /* Pods_iOSGraphQL.framework */; };
+		8D1C234B24987DAC009B9D44 /* DateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C234A24987DAC009B9D44 /* DateTextField.swift */; };
+		8D1C234D24987DD5009B9D44 /* DateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C234C24987DD5009B9D44 /* DateField.swift */; };
+		8D1C234F2498818A009B9D44 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C234E2498818A009B9D44 /* PickerTextField.swift */; };
+		8D1C2351249881A5009B9D44 /* PickerField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C2350249881A5009B9D44 /* PickerField.swift */; };
 		8D279E662486192C0062BD50 /* DeletePost.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8D279E652486192C0062BD50 /* DeletePost.graphql */; };
 		8D4718F02478F9FB002A5331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4718EF2478F9FB002A5331 /* AppDelegate.swift */; };
 		8D4718F22478F9FB002A5331 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4718F12478F9FB002A5331 /* SceneDelegate.swift */; };
-		8D4718F42478F9FB002A5331 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D4718F32478F9FB002A5331 /* ContentView.swift */; };
 		8D4718F62478F9FE002A5331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D4718F52478F9FE002A5331 /* Assets.xcassets */; };
 		8D4718F92478F9FE002A5331 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D4718F82478F9FE002A5331 /* Preview Assets.xcassets */; };
 		8D4718FC2478F9FE002A5331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D4718FA2478F9FE002A5331 /* LaunchScreen.storyboard */; };
@@ -30,6 +33,17 @@
 		8D996534249DCBD10063EAAD /* BlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D996533249DCBD10063EAAD /* BlogService.swift */; };
 		8D996536249DD4B60063EAAD /* MockBlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D996535249DD4B60063EAAD /* MockBlogService.swift */; };
 		8D996538249DD4C50063EAAD /* GraphQLBlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D996537249DD4C50063EAAD /* GraphQLBlogService.swift */; };
+		8D99653B249DD7170063EAAD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99653A249DD7170063EAAD /* Coordinator.swift */; };
+		8D99653D249DD7470063EAAD /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99653C249DD7470063EAAD /* AppCoordinator.swift */; };
+		8D996546249DD9880063EAAD /* PostListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D996545249DD9880063EAAD /* PostListCoordinator.swift */; };
+		8D996548249DD9A70063EAAD /* PostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D996547249DD9A70063EAAD /* PostsList.swift */; };
+		8D99654B249DD9F50063EAAD /* PostsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99654A249DD9F50063EAAD /* PostsListViewModel.swift */; };
+		8D99654D249DDBC90063EAAD /* NewPostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99654C249DDBC90063EAAD /* NewPostCoordinator.swift */; };
+		8D99654F249DDEB60063EAAD /* Image+SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99654E249DDEB60063EAAD /* Image+SFSymbol.swift */; };
+		8D996551249DDF030063EAAD /* NewPostForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D996550249DDF030063EAAD /* NewPostForm.swift */; };
+		8D996554249DF1DF0063EAAD /* NewPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D996553249DF1DF0063EAAD /* NewPostViewModel.swift */; };
+		8D996556249DF2950063EAAD /* DataState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D996555249DF2950063EAAD /* DataState.swift */; };
+		8D996558249DFBF40063EAAD /* DateFormatter+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D996557249DFBF40063EAAD /* DateFormatter+Utils.swift */; };
 		8DD8FC352488182900C1AE4D /* EditPost.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8DD8FC342488182900C1AE4D /* EditPost.graphql */; };
 /* End PBXBuildFile section */
 
@@ -46,11 +60,14 @@
 /* Begin PBXFileReference section */
 		11FA5F8C8E98507EF6448EB1 /* Pods_iOSGraphQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSGraphQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		199C70BD3D3145A9252070E5 /* Pods-iOSGraphQL.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSGraphQL.debug.xcconfig"; path = "Target Support Files/Pods-iOSGraphQL/Pods-iOSGraphQL.debug.xcconfig"; sourceTree = "<group>"; };
+		8D1C234A24987DAC009B9D44 /* DateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTextField.swift; sourceTree = "<group>"; };
+		8D1C234C24987DD5009B9D44 /* DateField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateField.swift; sourceTree = "<group>"; };
+		8D1C234E2498818A009B9D44 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
+		8D1C2350249881A5009B9D44 /* PickerField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerField.swift; sourceTree = "<group>"; };
 		8D279E652486192C0062BD50 /* DeletePost.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = DeletePost.graphql; sourceTree = "<group>"; };
 		8D4718EC2478F9FB002A5331 /* iOSGraphQL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSGraphQL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D4718EF2478F9FB002A5331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D4718F12478F9FB002A5331 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8D4718F32478F9FB002A5331 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8D4718F52478F9FE002A5331 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D4718F82478F9FE002A5331 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8D4718FB2478F9FE002A5331 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -72,6 +89,17 @@
 		8D996533249DCBD10063EAAD /* BlogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogService.swift; sourceTree = "<group>"; };
 		8D996535249DD4B60063EAAD /* MockBlogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBlogService.swift; sourceTree = "<group>"; };
 		8D996537249DD4C50063EAAD /* GraphQLBlogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLBlogService.swift; sourceTree = "<group>"; };
+		8D99653A249DD7170063EAAD /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		8D99653C249DD7470063EAAD /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		8D996545249DD9880063EAAD /* PostListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCoordinator.swift; sourceTree = "<group>"; };
+		8D996547249DD9A70063EAAD /* PostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsList.swift; sourceTree = "<group>"; };
+		8D99654A249DD9F50063EAAD /* PostsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsListViewModel.swift; sourceTree = "<group>"; };
+		8D99654C249DDBC90063EAAD /* NewPostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostCoordinator.swift; sourceTree = "<group>"; };
+		8D99654E249DDEB60063EAAD /* Image+SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+SFSymbol.swift"; sourceTree = "<group>"; };
+		8D996550249DDF030063EAAD /* NewPostForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostForm.swift; sourceTree = "<group>"; };
+		8D996553249DF1DF0063EAAD /* NewPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewModel.swift; sourceTree = "<group>"; };
+		8D996555249DF2950063EAAD /* DataState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataState.swift; sourceTree = "<group>"; };
+		8D996557249DFBF40063EAAD /* DateFormatter+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Utils.swift"; sourceTree = "<group>"; };
 		8DD8FC342488182900C1AE4D /* EditPost.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = EditPost.graphql; sourceTree = "<group>"; };
 		E00BF888400986909EC0C349 /* Pods-iOSGraphQL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSGraphQL.release.xcconfig"; path = "Target Support Files/Pods-iOSGraphQL/Pods-iOSGraphQL.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +140,25 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8D1C234824987D8A009B9D44 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8D1C234924987D9E009B9D44 /* UIKit */,
+				8D1C234C24987DD5009B9D44 /* DateField.swift */,
+				8D1C2350249881A5009B9D44 /* PickerField.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		8D1C234924987D9E009B9D44 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				8D1C234A24987DAC009B9D44 /* DateTextField.swift */,
+				8D1C234E2498818A009B9D44 /* PickerTextField.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		8D4718E32478F9FB002A5331 = {
 			isa = PBXGroup;
 			children = (
@@ -135,13 +182,16 @@
 		8D4718EE2478F9FB002A5331 /* iOSGraphQL */ = {
 			isa = PBXGroup;
 			children = (
+				8D99653E249DD8AD0063EAAD /* Modules */,
+				8D996539249DD7070063EAAD /* Coordinators */,
 				8D99652D249DCB6F0063EAAD /* Services */,
+				8D1C234824987D8A009B9D44 /* Components */,
 				8D859E0A24823CF6000259FD /* Extensions */,
 				8D47191A24790153002A5331 /* Models */,
 				8D4719112478FB58002A5331 /* GraphQL */,
 				8D4718EF2478F9FB002A5331 /* AppDelegate.swift */,
 				8D4718F12478F9FB002A5331 /* SceneDelegate.swift */,
-				8D4718F32478F9FB002A5331 /* ContentView.swift */,
+				8D99653C249DD7470063EAAD /* AppCoordinator.swift */,
 				8D4718F52478F9FE002A5331 /* Assets.xcassets */,
 				8D4718FA2478F9FE002A5331 /* LaunchScreen.storyboard */,
 				8D4718FD2478F9FE002A5331 /* Info.plist */,
@@ -187,6 +237,7 @@
 				8D47191B2479015C002A5331 /* Post.swift */,
 				8D859E0324822DEA000259FD /* CustomUUID.swift */,
 				8D859E0D24825B43000259FD /* Author.swift */,
+				8D996555249DF2950063EAAD /* DataState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -195,6 +246,8 @@
 			isa = PBXGroup;
 			children = (
 				8D859E0B24823D09000259FD /* Date+JSONDecodable.swift */,
+				8D99654E249DDEB60063EAAD /* Image+SFSymbol.swift */,
+				8D996557249DFBF40063EAAD /* DateFormatter+Utils.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -217,6 +270,91 @@
 				8D996537249DD4C50063EAAD /* GraphQLBlogService.swift */,
 			);
 			path = Blog;
+			sourceTree = "<group>";
+		};
+		8D996539249DD7070063EAAD /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				8D99653A249DD7170063EAAD /* Coordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		8D99653E249DD8AD0063EAAD /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				8D996540249DD8C10063EAAD /* NewPost */,
+				8D99653F249DD8B30063EAAD /* PostsList */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		8D99653F249DD8B30063EAAD /* PostsList */ = {
+			isa = PBXGroup;
+			children = (
+				8D996541249DD8CA0063EAAD /* Coordinator */,
+				8D996549249DD9E50063EAAD /* ViewModels */,
+				8D996544249DD8DF0063EAAD /* Views */,
+			);
+			path = PostsList;
+			sourceTree = "<group>";
+		};
+		8D996540249DD8C10063EAAD /* NewPost */ = {
+			isa = PBXGroup;
+			children = (
+				8D996542249DD8CF0063EAAD /* Coordinator */,
+				8D996552249DF1D30063EAAD /* ViewModels */,
+				8D996543249DD8D40063EAAD /* Views */,
+			);
+			path = NewPost;
+			sourceTree = "<group>";
+		};
+		8D996541249DD8CA0063EAAD /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				8D996545249DD9880063EAAD /* PostListCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		8D996542249DD8CF0063EAAD /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				8D99654C249DDBC90063EAAD /* NewPostCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		8D996543249DD8D40063EAAD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8D996550249DDF030063EAAD /* NewPostForm.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8D996544249DD8DF0063EAAD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8D996547249DD9A70063EAAD /* PostsList.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8D996549249DD9E50063EAAD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8D99654A249DD9F50063EAAD /* PostsListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8D996552249DF1D30063EAAD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8D996553249DF1DF0063EAAD /* NewPostViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,20 +507,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D1C2351249881A5009B9D44 /* PickerField.swift in Sources */,
 				8D996538249DD4C50063EAAD /* GraphQLBlogService.swift in Sources */,
+				8D996546249DD9880063EAAD /* PostListCoordinator.swift in Sources */,
 				8D996536249DD4B60063EAAD /* MockBlogService.swift in Sources */,
 				8D996534249DCBD10063EAAD /* BlogService.swift in Sources */,
+				8D1C234D24987DD5009B9D44 /* DateField.swift in Sources */,
 				8D4718F02478F9FB002A5331 /* AppDelegate.swift in Sources */,
+				8D99654D249DDBC90063EAAD /* NewPostCoordinator.swift in Sources */,
+				8D99653B249DD7170063EAAD /* Coordinator.swift in Sources */,
+				8D996556249DF2950063EAAD /* DataState.swift in Sources */,
 				8D99652F249DCB830063EAAD /* Services.swift in Sources */,
+				8D996551249DDF030063EAAD /* NewPostForm.swift in Sources */,
 				8D859E0C24823D09000259FD /* Date+JSONDecodable.swift in Sources */,
+				8D99654B249DD9F50063EAAD /* PostsListViewModel.swift in Sources */,
 				8D4718F22478F9FB002A5331 /* SceneDelegate.swift in Sources */,
+				8D1C234B24987DAC009B9D44 /* DateTextField.swift in Sources */,
 				8D859E0E24825B43000259FD /* Author.swift in Sources */,
+				8D996558249DFBF40063EAAD /* DateFormatter+Utils.swift in Sources */,
+				8D99653D249DD7470063EAAD /* AppCoordinator.swift in Sources */,
 				8D4719172478FEA2002A5331 /* API.swift in Sources */,
+				8D99654F249DDEB60063EAAD /* Image+SFSymbol.swift in Sources */,
+				8D996548249DD9A70063EAAD /* PostsList.swift in Sources */,
 				8D859E0424822DEA000259FD /* CustomUUID.swift in Sources */,
 				8D47191C2479015C002A5331 /* Post.swift in Sources */,
-				8D4718F42478F9FB002A5331 /* ContentView.swift in Sources */,
+				8D996554249DF1DF0063EAAD /* NewPostViewModel.swift in Sources */,
 				8D996531249DCB8C0063EAAD /* AppServices.swift in Sources */,
 				8D4719192478FF4E002A5331 /* GraphQLClient.swift in Sources */,
+				8D1C234F2498818A009B9D44 /* PickerTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

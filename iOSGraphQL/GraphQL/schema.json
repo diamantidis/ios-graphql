@@ -285,13 +285,9 @@
               }
             ],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Post",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "Post",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -346,6 +342,20 @@
                 "defaultValue": null
               },
               {
+                "name": "title",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "tags",
                 "description": null,
                 "type": {
@@ -363,20 +373,6 @@
                         "ofType": null
                       }
                     }
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "title",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
                   }
                 },
                 "defaultValue": null
@@ -403,14 +399,14 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "authorId",
+            "name": "publishedAt",
             "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "CustomUUID",
+                "name": "Date",
                 "ofType": null
               }
             },

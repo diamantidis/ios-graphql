@@ -26,6 +26,6 @@ class AppServices: Services {
 
     // MARK: - Private properties
     private let graphQLClient: ApolloClient
-    private let isMock = true
+    private let isMock = false
 }
 
