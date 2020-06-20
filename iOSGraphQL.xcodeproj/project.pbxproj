@@ -25,6 +25,11 @@
 		8D859E0424822DEA000259FD /* CustomUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859E0324822DEA000259FD /* CustomUUID.swift */; };
 		8D859E0C24823D09000259FD /* Date+JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859E0B24823D09000259FD /* Date+JSONDecodable.swift */; };
 		8D859E0E24825B43000259FD /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D859E0D24825B43000259FD /* Author.swift */; };
+		8D99652F249DCB830063EAAD /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D99652E249DCB830063EAAD /* Services.swift */; };
+		8D996531249DCB8C0063EAAD /* AppServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D996530249DCB8C0063EAAD /* AppServices.swift */; };
+		8D996534249DCBD10063EAAD /* BlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D996533249DCBD10063EAAD /* BlogService.swift */; };
+		8D996536249DD4B60063EAAD /* MockBlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D996535249DD4B60063EAAD /* MockBlogService.swift */; };
+		8D996538249DD4C50063EAAD /* GraphQLBlogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D996537249DD4C50063EAAD /* GraphQLBlogService.swift */; };
 		8DD8FC352488182900C1AE4D /* EditPost.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 8DD8FC342488182900C1AE4D /* EditPost.graphql */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +67,11 @@
 		8D859E0324822DEA000259FD /* CustomUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUUID.swift; sourceTree = "<group>"; };
 		8D859E0B24823D09000259FD /* Date+JSONDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+JSONDecodable.swift"; sourceTree = "<group>"; };
 		8D859E0D24825B43000259FD /* Author.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
+		8D99652E249DCB830063EAAD /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		8D996530249DCB8C0063EAAD /* AppServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppServices.swift; sourceTree = "<group>"; };
+		8D996533249DCBD10063EAAD /* BlogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogService.swift; sourceTree = "<group>"; };
+		8D996535249DD4B60063EAAD /* MockBlogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBlogService.swift; sourceTree = "<group>"; };
+		8D996537249DD4C50063EAAD /* GraphQLBlogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLBlogService.swift; sourceTree = "<group>"; };
 		8DD8FC342488182900C1AE4D /* EditPost.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = EditPost.graphql; sourceTree = "<group>"; };
 		E00BF888400986909EC0C349 /* Pods-iOSGraphQL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOSGraphQL.release.xcconfig"; path = "Target Support Files/Pods-iOSGraphQL/Pods-iOSGraphQL.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +135,7 @@
 		8D4718EE2478F9FB002A5331 /* iOSGraphQL */ = {
 			isa = PBXGroup;
 			children = (
+				8D99652D249DCB6F0063EAAD /* Services */,
 				8D859E0A24823CF6000259FD /* Extensions */,
 				8D47191A24790153002A5331 /* Models */,
 				8D4719112478FB58002A5331 /* GraphQL */,
@@ -186,6 +197,26 @@
 				8D859E0B24823D09000259FD /* Date+JSONDecodable.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8D99652D249DCB6F0063EAAD /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				8D99652E249DCB830063EAAD /* Services.swift */,
+				8D996530249DCB8C0063EAAD /* AppServices.swift */,
+				8D996532249DCBBD0063EAAD /* Blog */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		8D996532249DCBBD0063EAAD /* Blog */ = {
+			isa = PBXGroup;
+			children = (
+				8D996533249DCBD10063EAAD /* BlogService.swift */,
+				8D996535249DD4B60063EAAD /* MockBlogService.swift */,
+				8D996537249DD4C50063EAAD /* GraphQLBlogService.swift */,
+			);
+			path = Blog;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,7 +369,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D996538249DD4C50063EAAD /* GraphQLBlogService.swift in Sources */,
+				8D996536249DD4B60063EAAD /* MockBlogService.swift in Sources */,
+				8D996534249DCBD10063EAAD /* BlogService.swift in Sources */,
 				8D4718F02478F9FB002A5331 /* AppDelegate.swift in Sources */,
+				8D99652F249DCB830063EAAD /* Services.swift in Sources */,
 				8D859E0C24823D09000259FD /* Date+JSONDecodable.swift in Sources */,
 				8D4718F22478F9FB002A5331 /* SceneDelegate.swift in Sources */,
 				8D859E0E24825B43000259FD /* Author.swift in Sources */,
@@ -346,6 +381,7 @@
 				8D859E0424822DEA000259FD /* CustomUUID.swift in Sources */,
 				8D47191C2479015C002A5331 /* Post.swift in Sources */,
 				8D4718F42478F9FB002A5331 /* ContentView.swift in Sources */,
+				8D996531249DCB8C0063EAAD /* AppServices.swift in Sources */,
 				8D4719192478FF4E002A5331 /* GraphQLClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

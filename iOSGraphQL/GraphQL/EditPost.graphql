@@ -4,5 +4,8 @@ mutation EditPost($id: CustomUUID!, $title: String!, $tags: [Tag!]!) {
     title
     publishedAt
     tags
+    author {
+      ...AuthorDetails
+    }
   }
 }

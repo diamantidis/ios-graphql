@@ -9,7 +9,7 @@
 import Foundation
 import Apollo
 
-public struct CustomUUID: JSONDecodable {
+public struct CustomUUID: JSONDecodable, Equatable {
     let value: UUID
 
     public init(jsonValue value: JSONValue) throws {
@@ -18,6 +18,10 @@ public struct CustomUUID: JSONDecodable {
         }
 
         self.value = uuid
+    }
+
+    init() {
+        self.value = UUID()
     }
 }
 
