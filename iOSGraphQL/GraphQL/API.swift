@@ -57,19 +57,19 @@ public struct PostInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
   /// - Parameters:
-  ///   - authorId
+  ///   - publishedAt
   ///   - tags
   ///   - title
-  public init(authorId: CustomUUID, tags: [Tag], title: String) {
-    graphQLMap = ["authorId": authorId, "tags": tags, "title": title]
+  public init(publishedAt: Date, tags: [Tag], title: String) {
+    graphQLMap = ["publishedAt": publishedAt, "tags": tags, "title": title]
   }
 
-  public var authorId: CustomUUID {
+  public var publishedAt: Date {
     get {
-      return graphQLMap["authorId"] as! CustomUUID
+      return graphQLMap["publishedAt"] as! Date
     }
     set {
-      graphQLMap.updateValue(newValue, forKey: "authorId")
+      graphQLMap.updateValue(newValue, forKey: "publishedAt")
     }
   }
 
@@ -314,7 +314,7 @@ public final class CreatePostMutation: GraphQLMutation {
     public static let possibleTypes: [String] = ["Mutation"]
 
     public static let selections: [GraphQLSelection] = [
-      GraphQLField("createPost", arguments: ["input": GraphQLVariable("input")], type: .nonNull(.object(CreatePost.selections))),
+      GraphQLField("createPost", arguments: ["input": GraphQLVariable("input")], type: .object(CreatePost.selections)),
     ]
 
     public private(set) var resultMap: ResultMap
@@ -323,16 +323,16 @@ public final class CreatePostMutation: GraphQLMutation {
       self.resultMap = unsafeResultMap
     }
 
-    public init(createPost: CreatePost) {
-      self.init(unsafeResultMap: ["__typename": "Mutation", "createPost": createPost.resultMap])
+    public init(createPost: CreatePost? = nil) {
+      self.init(unsafeResultMap: ["__typename": "Mutation", "createPost": createPost.flatMap { (value: CreatePost) -> ResultMap in value.resultMap }])
     }
 
-    public var createPost: CreatePost {
+    public var createPost: CreatePost? {
       get {
-        return CreatePost(unsafeResultMap: resultMap["createPost"]! as! ResultMap)
+        return (resultMap["createPost"] as? ResultMap).flatMap { CreatePost(unsafeResultMap: $0) }
       }
       set {
-        resultMap.updateValue(newValue.resultMap, forKey: "createPost")
+        resultMap.updateValue(newValue?.resultMap, forKey: "createPost")
       }
     }
 
@@ -529,11 +529,17 @@ public final class EditPostMutation: GraphQLMutation {
         title
         publishedAt
         tags
+        author {
+          __typename
+          ...AuthorDetails
+        }
       }
     }
     """
 
   public let operationName: String = "EditPost"
+
+  public var queryDocument: String { return operationDefinition.appending(AuthorDetails.fragmentDefinition) }
 
   public var id: CustomUUID
   public var title: String
@@ -584,6 +590,7 @@ public final class EditPostMutation: GraphQLMutation {
         GraphQLField("title", type: .nonNull(.scalar(String.self))),
         GraphQLField("publishedAt", type: .nonNull(.scalar(Date.self))),
         GraphQLField("tags", type: .nonNull(.list(.nonNull(.scalar(Tag.self))))),
+        GraphQLField("author", type: .nonNull(.object(Author.selections))),
       ]
 
       public private(set) var resultMap: ResultMap
@@ -592,8 +599,8 @@ public final class EditPostMutation: GraphQLMutation {
         self.resultMap = unsafeResultMap
       }
 
-      public init(id: CustomUUID, title: String, publishedAt: Date, tags: [Tag]) {
-        self.init(unsafeResultMap: ["__typename": "Post", "id": id, "title": title, "publishedAt": publishedAt, "tags": tags])
+      public init(id: CustomUUID, title: String, publishedAt: Date, tags: [Tag], author: Author) {
+        self.init(unsafeResultMap: ["__typename": "Post", "id": id, "title": title, "publishedAt": publishedAt, "tags": tags, "author": author.resultMap])
       }
 
       public var __typename: String {
@@ -638,6 +645,69 @@ public final class EditPostMutation: GraphQLMutation {
         }
         set {
           resultMap.updateValue(newValue, forKey: "tags")
+        }
+      }
+
+      public var author: Author {
+        get {
+          return Author(unsafeResultMap: resultMap["author"]! as! ResultMap)
+        }
+        set {
+          resultMap.updateValue(newValue.resultMap, forKey: "author")
+        }
+      }
+
+      public struct Author: GraphQLSelectionSet {
+        public static let possibleTypes: [String] = ["Author"]
+
+        public static let selections: [GraphQLSelection] = [
+          GraphQLField("__typename", type: .nonNull(.scalar(String.self))),
+          GraphQLFragmentSpread(AuthorDetails.self),
+        ]
+
+        public private(set) var resultMap: ResultMap
+
+        public init(unsafeResultMap: ResultMap) {
+          self.resultMap = unsafeResultMap
+        }
+
+        public init(id: CustomUUID, name: String, twitter: String) {
+          self.init(unsafeResultMap: ["__typename": "Author", "id": id, "name": name, "twitter": twitter])
+        }
+
+        public var __typename: String {
+          get {
+            return resultMap["__typename"]! as! String
+          }
+          set {
+            resultMap.updateValue(newValue, forKey: "__typename")
+          }
+        }
+
+        public var fragments: Fragments {
+          get {
+            return Fragments(unsafeResultMap: resultMap)
+          }
+          set {
+            resultMap += newValue.resultMap
+          }
+        }
+
+        public struct Fragments {
+          public private(set) var resultMap: ResultMap
+
+          public init(unsafeResultMap: ResultMap) {
+            self.resultMap = unsafeResultMap
+          }
+
+          public var authorDetails: AuthorDetails {
+            get {
+              return AuthorDetails(unsafeResultMap: resultMap)
+            }
+            set {
+              resultMap += newValue.resultMap
+            }
+          }
         }
       }
     }

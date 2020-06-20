@@ -10,3 +10,9 @@ extension Date: JSONDecodable {
         self = Date(timeIntervalSinceReferenceDate: timeInterval)
     }
 }
+
+extension Date: JSONEncodable {
+    public var jsonValue: JSONValue {
+        return self.timeIntervalSinceReferenceDate
+    }
+}

@@ -18,4 +18,10 @@ struct Author {
         self.name = author.name
         self.twitter = author.twitter
     }
+
+    init(name: String, twitter: String) {
+        self.id = CustomUUID()
+        self.name = name
+        self.twitter = twitter
+    }
 }
